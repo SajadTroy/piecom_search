@@ -1,0 +1,118 @@
+.search_result_header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ccc;
+}
+
+.search_result_header .top_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 20px;
+}
+
+.search_result_header .bottom_nav {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 100%;
+}
+
+.search_result_header .top_nav .left_nav {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.search_result_header .top_nav .right_nav {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+
+.search_result_header .top_nav .left_nav .logo {
+    width: 250px;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_result_header .top_nav .left_nav .logo img {
+    width: 200px;
+    height: auto;
+}
+
+.search_result_header .top_nav .left_nav .search_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 250px);
+    position: relative;
+    height: 100%;
+}
+
+.search_result_header .top_nav .left_nav .search_bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+.search_result_header .top_nav .left_nav .search_bar input {
+    width: calc(100% - 50px);
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.search_result_header .top_nav .left_nav .search_bar button {
+    width: 50px;
+    padding: 10px;
+    background-color: transparent;
+    color: #ccc;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Search Suggestions Styles */
+.search_result_header .top_nav .left_nav .suggestions_container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.search_result_header .top_nav .left_nav .suggestions_container .suggestion_item {
+    padding: 15px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    text-align: left;
+}
+
+.search_result_header .top_nav .left_nav .suggestions_container .suggestion_item:hover {
+    background-color: #f5f5f5;
+}
+
+.search_result_header .top_nav .left_nav .suggestions_container .suggestion_item.selected {
+    background-color: #e0e0e0; /* Highlight for keyboard-selected suggestion */
+}

@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import styles from "./SearchResultsHeader.module.css";
+import "@/components/SearchResultsHeader.css";
 
 
 export default function SearchResultsHeader() {
@@ -13,35 +11,50 @@ export default function SearchResultsHeader() {
                         <Link href="/" className="logo">
                             <img src="/img/logo/logo.png" alt="Piecom Logo" />
                         </Link>
-                        <form
-                            className="search_bar"
-                            action="/search"
-                            method="get"
+                        <div className="search_cont">
+                            <form
+                                className="search_bar"
+                                action="/search"
+                                method="get"
+                            >
+                                <button type="button">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="lucide lucide-search-icon lucide-search"
+                                    >
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.3-4.3" />
+                                    </svg>
+                                </button>
+                                <input
+                                    type="text"
+                                    placeholder="Search for websites"
+                                    name="query"
+                                    autoComplete="off"
+                                />
+                            </form>
+                            {/* {suggestions.length > 0 && (
+                <div className="suggestions_container">
+                    {suggestions.map((suggestion, index) => (
+                        <div
+                            key={index}
+                            className={`suggestion_item ${index === selectedIndex ? "selected" : ""}`}
+                            onClick={() => handleSuggestionSelect(suggestion)}
                         >
-                            <button type="button">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="lucide lucide-search-icon lucide-search"
-                                >
-                                    <circle cx="11" cy="11" r="8" />
-                                    <path d="m21 21-4.3-4.3" />
-                                </svg>
-                            </button>
-                            <input
-                                type="text"
-                                placeholder="Search for websites"
-                                name="query"
-                                autoComplete="off"
-                            />
-                        </form>
+                            {suggestion}
+                        </div>
+                    ))}
+                </div>
+            )} */}
+                        </div>
                     </div>
                     <div className="right_nav">
                         <Link href="/settings" className="settings">
@@ -58,7 +71,7 @@ export default function SearchResultsHeader() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe-icon lucide-globe"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
                         </Link>
                         <Link href="/images?query={query_here}" className="images">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round" className="lucide lucide-image-icon lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-image-icon lucide-image"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><circle cx="9" cy="9" r="2" /><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></svg>
                         </Link>
                     </div>
                 </div>
