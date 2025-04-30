@@ -57,6 +57,10 @@ const demoSuggestions: string[] = [
     "graphic design",
     "hair care",
     "healthy snacks",
+    "hello world guide",
+    "hello world tutorial",
+    "hello kitty products",
+    "hello fresh meals",
     "hiking trails",
     "home decor",
     "home improvement",
@@ -230,10 +234,10 @@ export default function SearchForm() {
         setQuery(value);
         setSelectedIndex(-1); // Reset selection when typing
 
-        // Filter suggestions based on input
+        // Filter suggestions where the suggestion starts with the input query
         if (value.trim()) {
             const filteredSuggestions = demoSuggestions.filter((suggestion) =>
-                suggestion.toLowerCase().includes(value.toLowerCase())
+                suggestion.toLowerCase().startsWith(value.toLowerCase())
             );
             setSuggestions(filteredSuggestions);
         } else {
