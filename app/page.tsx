@@ -18,7 +18,7 @@ interface Metadata {
 export const metadata: Metadata = {
   title: "Piecom",
   description:
-    "Piecom, an advanced search engine, delivers cutting-edge search solutions. Experience the future of search—ultra-fast, secure, and intuitive.",
+    "An advanced search engine, delivers cutting-edge search solutions. Experience the future of search—ultra-fast, secure, and intuitive.",
   metadataBase: new URL("https://piecom.in"),
   keywords: [
     "Piecom",
