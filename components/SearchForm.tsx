@@ -16,12 +16,15 @@ const demoSuggestions: string[] = [
 export default function SearchForm() {
   const [query, setQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1); // Tracks the keyboard-selected suggestion
   const formRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Handle search input change
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
+    setSelectedIndex(-1); // Reset selection when typing
 
     // Filter suggestions based on input
     if (value.trim()) {
@@ -38,9 +41,35 @@ export default function SearchForm() {
   const handleSuggestionClick = (suggestion: string) => {
     setQuery(suggestion);
     setSuggestions([]);
+    setSelectedIndex(-1);
     // Submit the form
     if (formRef.current) {
       formRef.current.submit();
+    }
+  };
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (suggestions.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) =>
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+    } else if (e.key === "Enter" && selectedIndex >= 0) {
+      e.preventDefault();
+      const selectedSuggestion = suggestions[selectedIndex];
+      setQuery(selectedSuggestion);
+      setSuggestions([]);
+      setSelectedIndex(-1);
+      // Submit the form
+      if (formRef.current) {
+        formRef.current.submit();
+      }
     }
   };
 
@@ -75,11 +104,13 @@ export default function SearchForm() {
           </svg>
         </button>
         <input
+          ref={inputRef}
           type="text"
           placeholder="Search for websites"
           name="query"
           value={query}
           onChange={handleSearch}
+          onKeyDown={handleKeyDown}
           autoComplete="off"
         />
       </form>
@@ -88,7 +119,7 @@ export default function SearchForm() {
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              className="suggestion_item"
+              className={`suggestion_item ${index === selectedIndex ? "selected" : ""}`}
               onClick={() => handleSuggestionClick(suggestion)}
             >
               {suggestion}
