@@ -1,0 +1,6 @@
+.search_result_header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+}
