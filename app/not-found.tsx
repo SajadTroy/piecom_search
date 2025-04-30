@@ -5,7 +5,7 @@ export const metadata = {
   title: "404 - Page Not Found",
   description:
     "The page you're looking for does not exist. Explore our cutting-edge technology at GrovixLab.",
-  metadataBase: new URL('https://www.grovixlab.com'),
+  metadataBase: new URL('https://piecom.in'),
   keywords: ['GrovixLab', '404 Error', 'Page Not Found', 'Technology', 'Innovation'],
   applicationName: 'GrovixLab',
   referrer: 'origin-when-cross-origin',
@@ -18,7 +18,7 @@ export default function Custom404({ status = '404', message = 'The requested pag
   return (
     <div className="children_not">
       <div data-body>
-        <a href="https://piecom.in/" aria-label="GrovixLab">
+        <a href="/" aria-label="GrovixLab">
           <span className="logo" id='logo' />
         </a>
         <p>
