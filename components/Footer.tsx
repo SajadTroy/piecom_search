@@ -25,8 +25,6 @@ export default function Footer() {
           <div className={styles.coloredLines}>
             <span className={styles.lineRed}></span>
             <span className={styles.lineYellow}></span>
-            <span className={styles.lineGreen}></span>
-            <span className={styles.lineBlue}></span>
           </div>
           <div className={styles.location}>
             {/* <svg
@@ -45,6 +43,10 @@ export default function Footer() {
               <circle cx="12" cy="10" r="3" />
             </svg> */}
             <span>India</span>
+          </div>
+          <div className={styles.coloredLines}>
+            <span className={styles.lineGreen}></span>
+            <span className={styles.lineBlue}></span>
           </div>
         </div>
 
