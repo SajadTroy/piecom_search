@@ -16,7 +16,9 @@ export default function RootLayout({
         <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'></link>
       </head>
       <body>
-        {children}
+        <div className="children">
+          {children}
+        </div>
         <Footer />
       </body>
       <GoogleAnalytics gaId="G-03PLFCM4J1" />

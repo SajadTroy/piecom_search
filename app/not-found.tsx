@@ -16,16 +16,18 @@ export const metadata = {
 
 export default function Custom404({ status = '404', message = 'The requested page was not found on this server' }) {
   return (
-    <div data-body>
-      <a href="https://piecom.in/" aria-label="GrovixLab">
-        <span className="logo" id='logo' />
-      </a>
-      <p>
-        <b>{status}.</b> <ins>That's an error.</ins>
-      </p>
-      <p>
-        {message}. <ins>That's all we know.</ins>
-      </p>
+    <div className="children_not">
+      <div data-body>
+        <a href="https://piecom.in/" aria-label="GrovixLab">
+          <span className="logo" id='logo' />
+        </a>
+        <p>
+          <b>{status}.</b> <ins>That's an error.</ins>
+        </p>
+        <p>
+          {message}. <ins>That's all we know.</ins>
+        </p>
+      </div>
     </div>
   );
 }
