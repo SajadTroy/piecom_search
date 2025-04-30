@@ -58,3 +58,16 @@
     align-items: center;
     justify-content: center;
 }
+
+ /* Responsive Design */
+ @media (max-width: 768px) {
+    .container .home_container .search_container .image_logo img {
+      width: 190px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container .home_container .search_container .image_logo img {
+      width: 160px;
+    }
+  }
