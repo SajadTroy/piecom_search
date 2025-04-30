@@ -16,7 +16,7 @@ const demoSuggestions: string[] = [
 export default function SearchForm() {
   const [query, setQuery] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [selectedIndex, setSelectedIndex] = useState<number>(-1); // Tracks the keyboard-selected suggestion
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1); // Tracks keyboard-selected suggestion
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,11 +37,15 @@ export default function SearchForm() {
     }
   };
 
-  // Handle suggestion click
-  const handleSuggestionClick = (suggestion: string) => {
-    setQuery(suggestion);
-    setSuggestions([]);
-    setSelectedIndex(-1);
+  // Handle suggestion selection (click or Enter)
+  const handleSuggestionSelect = (suggestion: string) => {
+    setQuery(suggestion); // Update query to the full suggestion
+    setSuggestions([]); // Clear suggestions
+    setSelectedIndex(-1); // Reset selection
+    // Update the input's value attribute to ensure form submission uses the suggestion
+    if (inputRef.current) {
+      inputRef.current.value = suggestion;
+    }
     // Submit the form
     if (formRef.current) {
       formRef.current.submit();
@@ -62,14 +66,7 @@ export default function SearchForm() {
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
     } else if (e.key === "Enter" && selectedIndex >= 0) {
       e.preventDefault();
-      const selectedSuggestion = suggestions[selectedIndex];
-      setQuery(selectedSuggestion);
-      setSuggestions([]);
-      setSelectedIndex(-1);
-      // Submit the form
-      if (formRef.current) {
-        formRef.current.submit();
-      }
+      handleSuggestionSelect(suggestions[selectedIndex]);
     }
   };
 
@@ -120,7 +117,7 @@ export default function SearchForm() {
             <div
               key={index}
               className={`suggestion_item ${index === selectedIndex ? "selected" : ""}`}
-              onClick={() => handleSuggestionClick(suggestion)}
+              onClick={() => handleSuggestionSelect(suggestion)}
             >
               {suggestion}
             </div>
