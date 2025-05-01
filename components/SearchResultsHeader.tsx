@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import "@/components/SearchResultsHeader.css";
 
 // Suggestions (for autocomplete)
@@ -224,11 +225,21 @@ const demoSuggestions: string[] = [
 ];
 
 export default function SearchResultsHeader() {
-    const [query, setQuery] = useState<string>("");
+    const searchParams = useSearchParams();
+    const initialQuery = searchParams.get("query") || "";
+    const [query, setQuery] = useState<string>(initialQuery);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [selectedIndex, setSelectedIndex] = useState<number>(-1);
     const formRef = useRef<HTMLFormElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    // Update query state when URL query parameter changes
+    useEffect(() => {
+        setQuery(initialQuery);
+        if (inputRef.current) {
+            inputRef.current.value = initialQuery;
+        }
+    }, [initialQuery]);
 
     // Handle search input change
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -338,7 +349,10 @@ export default function SearchResultsHeader() {
             </div>
             <nav className="bottom-nav">
                 <div className="nav-container">
-                    <Link href="/search?query={query_here}" className="nav-link active">
+                    <Link
+                        href={`/search?query=${encodeURIComponent(query)}`}
+                        className="nav-link active"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
@@ -356,7 +370,10 @@ export default function SearchResultsHeader() {
                         </svg>
                         <span>Websites</span>
                     </Link>
-                    <Link href="/images?query={query_here}" className="nav-link">
+                    <Link
+                        href={`/images?query=${encodeURIComponent(query)}`}
+                        className="nav-link"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="20"
